@@ -12,17 +12,18 @@ services:
     stdin_open: true
     volumes:
       - type: bind
-        source: /home/minecraft/docker-ftb-server/tmp/world
+        source: ./tmp/world
         target: /home/minecraft/world
         read_only: false
       - type: bind
-        source: /home/minecraft/docker-ftb-server/tmp/backups
+        source: ./tmp/backups
         target: /home/minecraft/backups
         read_only: false
       - type: bind
-        source: /home/minecraft/docker-ftb-server/tmp/logs
+        source: ./tmp/logs
         target: /home/minecraft/logs
         read_only: false
+#      - ./tmp:/home/minecraft:rw
 #    depends_on:
 #      - volume-world
 #      - volume-backups

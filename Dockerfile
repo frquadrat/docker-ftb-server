@@ -41,14 +41,10 @@ RUN curl -L -O https://api.modpacks.ch/public/modpack/$PackID/$VersionID/server/
     && ./linux $PackID $VersionID --auto \
     && rm ./linux \
     && echo "eula=true" >eula.txt \
-    && echo >>user_jvm_args.txt \
-    && echo "-Xms1024m" >>user_jvm_args.txt \
-    && echo "-Xmx4096m" >>user_jvm_args.txt \
-    && echo "-XX:MetaspaceSize=256M" >>user_jvm_args.txt \
-    && echo "-XX:MaxMetaspaceSize=512m" >>user_jvm_args.txt \
-    && echo "-Djava.net.preferIPv4Stack=true" >>user_jvm_args.txt \
     && chmod a+x start.sh \
     && mkdir -p /home/minecraft/backups /home/minecraft/world /home/minecraft/logs
+
+COPY conf/user_jvm_args.txt /home/minecraft/
 
 # Minecraft server port
 EXPOSE 25565
