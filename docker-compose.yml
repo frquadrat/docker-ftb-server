@@ -1,0 +1,70 @@
+version: '3'
+
+services:
+  server:
+#    restart: unless-stopped
+    image: minecraft-ftb-inferno
+    container_name: minecraft-ftb-inferno-server
+    ports:
+      - "35565:25565"
+      - "25575:25575"
+    tty: true
+    stdin_open: true
+    volumes:
+      - type: bind
+        source: /home/minecraft/docker-ftb-server/tmp/world
+        target: /home/minecraft/world
+        read_only: false
+      - type: bind
+        source: /home/minecraft/docker-ftb-server/tmp/backups
+        target: /home/minecraft/backups
+        read_only: false
+      - type: bind
+        source: /home/minecraft/docker-ftb-server/tmp/logs
+        target: /home/minecraft/logs
+        read_only: false
+#    depends_on:
+#      - volume-world
+#      - volume-backups
+#      - volume-logs
+
+#    volumes:
+#      - type: bind
+#        source: ./tmp/world/
+#        target: /home/minecraft/world
+#        read_only: false
+#        bind:
+#          propagation: shared
+#      - type: bind
+#        source: ./tmp/backups/
+#        target: /home/minecraft/backups
+#        read_only: false
+#        bind:
+#          propagation: shared
+#      - type: bind
+#        source: ./tmp/logs/
+#        target: /home/minecraft/logs
+#        read_only: false
+#        bind:
+#          propagation: shared
+#      - type: bind
+#        source: ./tmp/config/
+#        target: /home/minecraft/config
+#        read_only: false
+#        bind:
+#          propagation: shared
+#      - type: bind
+#        source: ./tmp/server.properties
+#        target: /home/minecraft/server.properties
+#        read_only: false
+
+#  volume-world:
+#    image: busybox
+#    container_name: minecraft-ftb-inferno-world
+#  volume-backups:
+#    image: busybox
+#    container_name: minecraft-ftb-inferno-backups
+#  volume-logs:
+#    image: busybox
+#    container_name: minecraft-ftb-inferno-logs
+
