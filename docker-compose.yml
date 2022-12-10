@@ -23,49 +23,9 @@ services:
         source: ./tmp/logs
         target: /home/minecraft/logs
         read_only: false
-#      - ./tmp:/home/minecraft:rw
-#    depends_on:
-#      - volume-world
-#      - volume-backups
-#      - volume-logs
-
-#    volumes:
+# the following makes the container's server.properties visible to the host but not the other way round.
 #      - type: bind
-#        source: ./tmp/world/
-#        target: /home/minecraft/world
-#        read_only: false
-#        bind:
-#          propagation: shared
-#      - type: bind
-#        source: ./tmp/backups/
-#        target: /home/minecraft/backups
-#        read_only: false
-#        bind:
-#          propagation: shared
-#      - type: bind
-#        source: ./tmp/logs/
-#        target: /home/minecraft/logs
-#        read_only: false
-#        bind:
-#          propagation: shared
-#      - type: bind
-#        source: ./tmp/config/
-#        target: /home/minecraft/config
-#        read_only: false
-#        bind:
-#          propagation: shared
-#      - type: bind
-#        source: ./tmp/server.properties
+#        source: ./conf/server.properties
 #        target: /home/minecraft/server.properties
-#        read_only: false
-
-#  volume-world:
-#    image: busybox
-#    container_name: minecraft-ftb-inferno-world
-#  volume-backups:
-#    image: busybox
-#    container_name: minecraft-ftb-inferno-backups
-#  volume-logs:
-#    image: busybox
-#    container_name: minecraft-ftb-inferno-logs
+#        read_only: true
 
