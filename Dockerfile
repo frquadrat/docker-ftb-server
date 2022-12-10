@@ -3,6 +3,9 @@ FROM debian:bullseye
 ARG packId
 ARG versionId
 
+ENV PACK_ID $packId
+ENV VERSION_ID $versionId
+
 ENV LANG de_DE.UTF-8
 ENV LANGUAGE de_DE:en
 ENV LC_ALL de_DE.UTF-8
@@ -35,11 +38,13 @@ WORKDIR /home/minecraft
 
 ENV JAVA_OPTS="-Xms1024m -Xmx4096m -XX:MetaspaceSize=256M  "
 
+ENV INSTALLER_PACK_ID=99
+ENV INSTALLER_VERSION_ID=2285
 
 # download and execute linux installer
-RUN curl -L -O https://api.modpacks.ch/public/modpack/$packID/$versionID/server/linux \
+RUN curl -L -O https://api.modpacks.ch/public/modpack/$INSTALLER_PACK_ID/$INSTALLER_VERSION_ID/server/linux \
     && chmod a+x linux \
-    && ./linux $PackID $VersionID --auto \
+    && ./linux $PACK_ID $VERSION_ID --auto \
     && rm ./linux \
     && echo "eula=true" >eula.txt \
     && chmod a+x start.sh \
