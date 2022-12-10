@@ -1,5 +1,8 @@
 FROM debian:bullseye
 
+ARG packId
+ARG versionId
+
 ENV LANG de_DE.UTF-8
 ENV LANGUAGE de_DE:en
 ENV LC_ALL de_DE.UTF-8
@@ -32,11 +35,9 @@ WORKDIR /home/minecraft
 
 ENV JAVA_OPTS="-Xms1024m -Xmx4096m -XX:MetaspaceSize=256M  "
 
-ENV PackID 99
-ENV VersionID 2285
 
 # download and execute linux installer
-RUN curl -L -O https://api.modpacks.ch/public/modpack/$PackID/$VersionID/server/linux \
+RUN curl -L -O https://api.modpacks.ch/public/modpack/$packID/$versionID/server/linux \
     && chmod a+x linux \
     && ./linux $PackID $VersionID --auto \
     && rm ./linux \
@@ -47,12 +48,12 @@ RUN curl -L -O https://api.modpacks.ch/public/modpack/$PackID/$VersionID/server/
 COPY conf/user_jvm_args.txt /home/minecraft/
 
 # Minecraft server port
-EXPOSE 25565
+#EXPOSE 25565
 
 
-VOLUME ["/home/minecraft/world"]
-VOLUME ["/home/minecraft/backups"]
-VOLUME ["/home/minecraft/logs"]
+#VOLUME ["/home/minecraft/world"]
+#VOLUME ["/home/minecraft/backups"]
+#VOLUME ["/home/minecraft/logs"]
 
 
 # Set the default command to run on boot
